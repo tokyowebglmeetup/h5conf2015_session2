@@ -26,6 +26,8 @@ var width  = window.innerWidth,
     scene,
     camera,
     renderer,
+    ambientLight,
+    directionalLight,
     loader,
     alfaromeo = new THREE.Object3D();
 
@@ -38,26 +40,26 @@ renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( width, height );
 document.body.appendChild( renderer.domElement );
 
-var ambientLight = new THREE.AmbientLight( 0xffffff )
+ambientLight = new THREE.AmbientLight( 0xffffff )
 scene.add( ambientLight );
 
-var directionalLight = new THREE.DirectionalLight( 0xffffff );
-directionalLight.position.set( 0, 1, 0 ).normalize();
+directionalLight = new THREE.DirectionalLight( 0xffffff );
+directionalLight.position.set( 0, 1, 0 );
 scene.add( directionalLight );
 
 scene.add( new THREE.GridHelper( 10, 1 ) );
 
-loader = new THREE.JSONLoader();
-loader.load( 'alfaromeo.json', function( geometry, materials ) {
+// loader = new THREE.JSONLoader();
+// loader.load( 'alfaromeo.json', function( geometry, materials ) {
 
-  alfaromeo = new THREE.Mesh(
-    geometry,
-    new THREE.MeshFaceMaterial( materials )
-  );
+//   alfaromeo = new THREE.Mesh(
+//     geometry,
+//     new THREE.MeshFaceMaterial( materials )
+//   );
 
-  scene.add( alfaromeo );
+//   scene.add( alfaromeo );
 
-} );
+// } );
 
 ( function renderLoop () {
 
